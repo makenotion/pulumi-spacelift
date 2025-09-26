@@ -16,7 +16,7 @@ jobs:
         run: apk add --no-cache alpine-sdk git aws-cli bash
 
       - name: Check out repository code
-        uses: actions/checkout@main
+        uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493 # main
 
       - name: Treat repo as safe
         run: git config --global --add safe.directory /__w/pulumi-spacelift/pulumi-spacelift
@@ -25,14 +25,14 @@ jobs:
         run: rm -rf /github/home/.pulumi
 
       - name: Install pulumictl
-        uses: jaxxstorm/action-install-gh-release@v1
+        uses: jaxxstorm/action-install-gh-release@cd6b2b78ad38bdd294341cda064ec0692b06215b # v1
         with:
           repo: pulumi/pulumictl
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install pulumi
-        uses: pulumi/actions@v4
+        uses: pulumi/actions@a3f382e1242b69ab33854c253c3b580f1226348e # v4
 
       - name: Tag version
         run: git tag -d `git tag | grep -E '.'` && git tag v0.0.0
@@ -63,7 +63,7 @@ jobs:
 
       - name: Configure AWS credentials
         if: github.ref == 'refs/heads/future'
-        uses: aws-actions/configure-aws-credentials@v4
+        uses: aws-actions/configure-aws-credentials@7474bc4690e29a8392af63c5b98e7449536d5c3a # v4
         with:
           aws-region: ${{ secrets.PREPROD_AWS_REGION }}
           role-to-assume: ${{ secrets.PREPROD_AWS_ROLE_TO_ASSUME }}

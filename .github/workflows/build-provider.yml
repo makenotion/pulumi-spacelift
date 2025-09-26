@@ -16,21 +16,21 @@ jobs:
         run: apk add --no-cache alpine-sdk git bash
 
       - name: Check out repository code
-        uses: actions/checkout@main
+        uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493 # main
         with: { fetch-depth: 0 }
 
       - name: Treat repo as safe
         run: git config --global --add safe.directory /__w/pulumi-spacelift/pulumi-spacelift
 
       - name: Install pulumictl
-        uses: jaxxstorm/action-install-gh-release@v1
+        uses: jaxxstorm/action-install-gh-release@cd6b2b78ad38bdd294341cda064ec0692b06215b # v1
         with:
           repo: pulumi/pulumictl
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install pulumi
-        uses: pulumi/actions@v4
+        uses: pulumi/actions@a3f382e1242b69ab33854c253c3b580f1226348e # v4
 
       - name: Tag version
         run: |
