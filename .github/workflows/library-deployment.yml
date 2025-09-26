@@ -18,28 +18,28 @@ jobs:
         run: sudo apt update && sudo apt install -y bash
 
       - name: Check out repository code
-        uses: actions/checkout@main
+        uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493 # main
 
       - name: Treat repo as safe
         run: git config --global --add safe.directory /__w/pulumi-spacelift/pulumi-spacelift
 
       - name: Install Go
-        uses: actions/setup-go@v4
+        uses: actions/setup-go@19bb51245e9c80abacb2e91cc42b33fa478b8639 # v4
         with:
           go-version: 1.21.x
 
       - name: Install pulumictl
-        uses: jaxxstorm/action-install-gh-release@v1
+        uses: jaxxstorm/action-install-gh-release@cd6b2b78ad38bdd294341cda064ec0692b06215b # v1
         with:
           repo: pulumi/pulumictl
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install pulumi
-        uses: pulumi/actions@v4
+        uses: pulumi/actions@a3f382e1242b69ab33854c253c3b580f1226348e # v4
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: 16.x
           registry-url: https://registry.npmjs.org
@@ -48,7 +48,7 @@ jobs:
         run: npm install --global yarn
 
       - name: Setup DotNet
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@55ec9447dda3d1cf6bd587150f3262f30ee10815 # v3
         with:
           dotnet-version: 6
 
@@ -56,7 +56,7 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y icu-devtools
 
       - name: Setup Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@0ae58361cdfd39e2950bed97a1e26aa20c3d8955 # v4
         with:
           python-version: 3.9
 
@@ -81,7 +81,7 @@ jobs:
         run: cd sdk/dotnet && dotnet nuget push ${{github.workspace}}/sdk/dotnet/bin/Debug/*.nupkg  --api-key ${{ secrets.GITHUB_TOKEN }} --source "github"
       
       - name: Create release
-        uses: ncipollo/release-action@v1
+        uses: ncipollo/release-action@b7eabc95ff50cbeeedec83973935c8f306dfcd0b # v1
         with:
           generateReleaseNotes: true
           skipIfReleaseExists: true
